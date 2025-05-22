@@ -14,6 +14,42 @@ test('renders note form with title, content, and save button', () => {
   expect(submitButton).toBeInTheDocument();
 });
 
+test('focuses title input after submitting the form via clicking the submit button', async () => {
+  const user = userEvent.setup();
+  render(<NoteForm onSave={() => {}} />);
+
+  const titleInput = screen.getByPlaceholderText(/title/i);
+  const contentInput = screen.getByPlaceholderText(/content/i);
+  const submitButton = screen.getByRole('button', { name: /add note/i });
+
+  // Fill out and submit the form
+  await user.type(titleInput, 'My note');
+  await user.type(contentInput, 'Some content');
+  await user.click(submitButton);
+
+  // Check that title input is focused again
+  expect(titleInput).toHaveFocus();
+});
+
+test('focuses title input after pressing Enter', async () => {
+  const user = userEvent.setup();
+  render(<NoteForm onSave={() => {}} />);
+
+  const titleInput = screen.getByPlaceholderText('Title');
+  const contentInput = screen.getByPlaceholderText('Content');
+
+  await user.type(titleInput, 'My note');
+  await user.type(contentInput, 'Some content');
+
+  // Focus content input
+  contentInput.focus();
+
+  // Press Enter key on content input
+  await user.keyboard('{Enter}');
+
+  expect(titleInput).toHaveFocus();
+});
+
 test('allows user to type in title and content fields and clears the form after clicking submit', async () => {
   const user = userEvent.setup();
   const handleSave = vi.fn();
