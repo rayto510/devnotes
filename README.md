@@ -19,16 +19,16 @@ DevNotes is a lightweight, markdown-based note-taking app tailored for developer
 
 ## 📦 Tech Stack
 
-| Area         | Tech                          |
-|--------------|-------------------------------|
-| Frontend     | React + TypeScript            |
-| Styling      | Vanilla CSS (Tailwind coming soon) |
-| Markdown     | `react-markdown`              |
-| Search       | `fuse.js`                     |
-| Testing      | `Vitest` + `Testing Library` + `Playwright` |
-| CI/CD        | GitHub Actions                |
-| Storage      | `localStorage`, `IndexedDB`   |
-| Deploy       | Vercel / Netlify              |
+| Area     | Tech                                        |
+| -------- | ------------------------------------------- |
+| Frontend | React + TypeScript                          |
+| Styling  | Vanilla CSS (Tailwind coming soon)          |
+| Markdown | `react-markdown`                            |
+| Search   | `fuse.js`                                   |
+| Testing  | `Vitest` + `Testing Library` + `Playwright` |
+| CI/CD    | GitHub Actions                              |
+| Storage  | `localStorage`, `IndexedDB`                 |
+| Deploy   | Vercel / Netlify                            |
 
 ---
 
@@ -69,13 +69,13 @@ npm run coverage
 
 ## 🧰 Available Scripts
 
-| Script             | Description                    |
-|--------------------|--------------------------------|
-| `dev`              | Runs app in dev mode           |
-| `test`             | Runs unit/integration tests    |
-| `coverage`         | Outputs test coverage report   |
-| `build`            | Builds for production          |
-| `preview`          | Serves built app locally       |
+| Script     | Description                  |
+| ---------- | ---------------------------- |
+| `dev`      | Runs app in dev mode         |
+| `test`     | Runs unit/integration tests  |
+| `coverage` | Outputs test coverage report |
+| `build`    | Builds for production        |
+| `preview`  | Serves built app locally     |
 
 ---
 
