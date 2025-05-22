@@ -31,31 +31,35 @@ export default function NoteForm({ onSave }: NoteFormProps) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-4 space-y-4 rounded bg-white p-4 shadow"
+      className="mb-6 rounded-lg bg-white p-6 shadow dark:bg-gray-800"
     >
       <input
         type="text"
-        placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="w-full rounded border border-gray-300 p-2"
+        placeholder="Title"
+        required
+        className="mb-3 w-full rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       />
       <textarea
-        placeholder="Content"
         value={content}
         onChange={(e) => setContent(e.target.value)}
-        className="w-full resize-none rounded border border-gray-300 p-2"
+        placeholder="Content"
+        required
+        className="mb-3 h-24 w-full resize-none rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       />
       <input
+        type="text"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
         placeholder="Tags (comma separated)"
+        className="mb-4 w-full rounded-md border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
       />
       <button
         type="submit"
-        className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        className="w-full rounded-md bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700"
       >
-        Save Note
+        Add Note
       </button>
     </form>
   );

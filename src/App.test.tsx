@@ -21,7 +21,7 @@ test('adds note with tags and displays them', async () => {
   );
   await userEvent.type(screen.getByPlaceholderText(/tags/i), 'tag1, tag2');
 
-  await userEvent.click(screen.getByRole('button', { name: /save note/i }));
+  await userEvent.click(screen.getByRole('button', { name: /add note/i }));
 
   expect(screen.getByText('My note')).toBeInTheDocument();
   expect(screen.getByText('This is content')).toBeInTheDocument();

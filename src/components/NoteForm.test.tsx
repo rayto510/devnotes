@@ -7,7 +7,7 @@ test('renders note form with title, content, and save button', () => {
   render(<NoteForm onSave={() => {}} />);
   const titleInput = screen.getByPlaceholderText(/title/i);
   const contentInput = screen.getByPlaceholderText(/content/i);
-  const submitButton = screen.getByRole('button', { name: /save/i });
+  const submitButton = screen.getByRole('button', { name: /add note/i });
 
   expect(titleInput).toBeInTheDocument();
   expect(contentInput).toBeInTheDocument();
@@ -26,7 +26,7 @@ test('allows user to type in title and content fields and clears the form after 
 
   const titleInput = screen.getByPlaceholderText(/title/i);
   const contentInput = screen.getByPlaceholderText(/content/i);
-  const saveButton = screen.getByRole('button', { name: /save/i });
+  const saveButton = screen.getByRole('button', { name: /add note/i });
 
   // Simulate user typing in the title and content fields
   await user.type(titleInput, 'Test Title');
@@ -51,7 +51,7 @@ test('does not add a note if title or content is empty', () => {
   render(<NoteForm onSave={onSave} />);
 
   // Simulate clicking 'Save' with empty title and content
-  const saveButton = screen.getByRole('button', { name: /save/i });
+  const saveButton = screen.getByRole('button', { name: /add note/i });
 
   user.click(saveButton);
 

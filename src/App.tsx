@@ -6,6 +6,7 @@ interface Note {
   title: string;
   content: string;
   id: string;
+  tags: string[];
 }
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
     const newNote = {
       ...note,
     };
-    debugger;
     setNotes((prevNotes) => [...prevNotes, newNote]);
   };
 
@@ -24,18 +24,18 @@ function App() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-100 p-8 font-sans text-gray-800">
-      <div className="mx-auto max-w-3xl">
-        <h1 className="mb-2 text-3xl font-bold">DevNotes 📝</h1>
-        <p className="mb-6 text-gray-600">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <main className="mx-auto max-w-3xl p-6">
+        <h1 className="mb-2 text-3xl font-extrabold text-gray-900 dark:text-white">
+          DevNotes 📝
+        </h1>
+        <p className="mb-6 text-gray-700 dark:text-gray-300">
           A developer note-taking app (MVP in progress)
         </p>
         <NoteForm onSave={handleSave} />
-        <div className="mt-8">
-          <NotesList notes={notes} onDelete={handleDelete} />
-        </div>
-      </div>
-    </main>
+        <NotesList notes={notes} onDelete={handleDelete} />
+      </main>
+    </div>
   );
 }
 

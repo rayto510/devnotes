@@ -16,35 +16,39 @@ export default function NotesList({ notes, onDelete }: NotesListProps) {
       {notes.map((note) => (
         <li
           key={note.id}
-          className="flex flex-col gap-2 rounded bg-white p-4 shadow sm:flex-row sm:items-center sm:justify-between"
+          className="flex flex-col rounded-lg bg-white p-4 shadow dark:bg-gray-800"
         >
-          <div>
-            <h2 className="text-lg font-semibold text-gray-800">
+          <div className="mb-2 flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
               {note.title}
             </h2>
-            <p className="text-gray-600">{note.content}</p>
+            <button
+              aria-label={`Delete note ${note.id}`}
+              onClick={() => onDelete(note.id)}
+              className="text-red-600 transition hover:text-red-800"
+            >
+              &#x2715;
+            </button>
           </div>
-          <div className="mt-1 flex flex-wrap gap-1">
+          <p className="mb-3 text-gray-700 dark:text-gray-300">
+            {note.content}
+          </p>
+          <div className="flex flex-wrap gap-2">
             {note.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+                className="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 dark:bg-blue-700 dark:text-blue-200"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <button
-            aria-label={`Delete note ${note.id}`}
-            onClick={() => onDelete(note.id)}
-            className="self-start text-sm text-red-600 hover:text-red-800 sm:self-auto"
-          >
-            Delete
-          </button>
         </li>
       ))}
     </ul>
   ) : (
-    <p className="text-gray-500 italic">No notes available.</p>
+    <p className="text-gray-500 italic dark:text-gray-400">
+      No notes available.
+    </p>
   );
 }
