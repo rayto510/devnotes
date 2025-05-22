@@ -47,6 +47,54 @@ test('allows user to type in title and content fields and clears the form after 
   expect(tagsInput).not.toHaveTextContent('Test Tag, Test Tag 2');
 });
 
+test('prevent user from submitting empty title', async () => {
+  const user = userEvent.setup();
+  const handleSave = vi.fn();
+
+  vi.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(
+    '123e4567-e89b-12d3-a456-426614174000'
+  );
+
+  render(<NoteForm onSave={handleSave} />);
+
+  const titleInput = screen.getByPlaceholderText(/title/i);
+  const contentInput = screen.getByPlaceholderText(/content/i);
+  const tagsInput = screen.getByPlaceholderText(/tags \(comma separated\)/i);
+  const saveButton = screen.getByRole('button', { name: /add note/i });
+
+  // Simulate user typing in the title and content fields
+  await user.type(titleInput, ' ');
+  await user.type(contentInput, 'Test Content');
+  await user.type(tagsInput, 'Test Tag, Test Tag 2');
+  await user.click(saveButton);
+
+  expect(handleSave).not.toHaveBeenCalled();
+});
+
+test('prevent user from submitting empty content', async () => {
+  const user = userEvent.setup();
+  const handleSave = vi.fn();
+
+  vi.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(
+    '123e4567-e89b-12d3-a456-426614174000'
+  );
+
+  render(<NoteForm onSave={handleSave} />);
+
+  const titleInput = screen.getByPlaceholderText(/title/i);
+  const contentInput = screen.getByPlaceholderText(/content/i);
+  const tagsInput = screen.getByPlaceholderText(/tags \(comma separated\)/i);
+  const saveButton = screen.getByRole('button', { name: /add note/i });
+
+  // Simulate user typing in the title and content fields
+  await user.type(titleInput, 'Test title');
+  await user.type(contentInput, '  ');
+  await user.type(tagsInput, 'Test Tag, Test Tag 2');
+  await user.click(saveButton);
+
+  expect(handleSave).not.toHaveBeenCalled();
+});
+
 test('allows user to submit note form without tags', async () => {
   const user = userEvent.setup();
   const handleSave = vi.fn();

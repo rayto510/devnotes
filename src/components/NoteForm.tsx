@@ -22,7 +22,7 @@ export default function NoteForm({ onSave }: NoteFormProps) {
       .split(',')
       .map((t) => t.trim())
       .filter(Boolean);
-    if (!title || !content) return;
+    if (!title.trim() || !content.trim()) return;
     onSave({ id: crypto.randomUUID(), title, content, tags: tagsArray });
     setTitle('');
     setContent('');
