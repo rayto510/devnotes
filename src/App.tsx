@@ -11,6 +11,9 @@ interface Note {
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
+  const allTags = Array.from(new Set(notes.flatMap((note) => note.tags || [])));
 
   const handleSave = (note: Note) => {
     const newNote = {
@@ -23,6 +26,10 @@ function App() {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   };
 
+  const filteredNotes = selectedTag
+    ? notes.filter((note) => note.tags?.includes(selectedTag))
+    : notes;
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <main className="mx-auto max-w-3xl p-6">
@@ -33,7 +40,32 @@ function App() {
           A developer note-taking app (MVP in progress)
         </p>
         <NoteForm onSave={handleSave} />
-        <NotesList notes={notes} onDelete={handleDelete} />
+        <div className="my-4 flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedTag(null)}
+            className={`rounded px-3 py-1 ${selectedTag === null ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+          >
+            All
+          </button>
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`rounded px-3 py-1 ${selectedTag === tag ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            >
+              #{tag}
+            </button>
+          ))}
+        </div>
+
+        {/* Show currently selected tag filter */}
+        {selectedTag && (
+          <p className="mb-4 text-sm text-gray-600">
+            Filtering by <strong>#{selectedTag}</strong>
+          </p>
+        )}
+
+        <NotesList notes={filteredNotes} onDelete={handleDelete} />
       </main>
     </div>
   );
