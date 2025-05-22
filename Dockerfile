@@ -1,25 +1,22 @@
-# Dockerfile
-FROM node:24
+FROM node:20
+
+# Enable pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
-
-# Copy package.json and pnpm-lock.yaml first (for caching)
+# Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-ENV NODE_ENV=development
-
-# Install deps with pnpm
+# Install dependencies
 RUN pnpm install
 
-# Copy rest of the app
+# Copy everything else
 COPY . .
 
-# Expose the port Vite runs on
+# Expose Vite dev port
 EXPOSE 5173
 
-# Start the dev server
-CMD ["pnpm", "run", "dev"]
+# Run dev server
+CMD ["pnpm", "dev"]
