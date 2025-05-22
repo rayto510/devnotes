@@ -26,6 +26,7 @@ export default function NoteForm({ onSave }: NoteFormProps) {
     onSave({ id: crypto.randomUUID(), title, content, tags: tagsArray });
     setTitle('');
     setContent('');
+    setTags('');
   };
 
   return (
