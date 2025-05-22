@@ -5,25 +5,21 @@ import NotesList from './components/NotesList';
 interface Note {
   title: string;
   content: string;
-}
-
-interface NoteWithId extends Note {
-  id: number;
+  id: string;
 }
 
 function App() {
-  const [notes, setNotes] = useState<NoteWithId[]>([]);
+  const [notes, setNotes] = useState<Note[]>([]);
 
   const handleSave = (note: Note) => {
     const newNote = {
       ...note,
-      id: notes.length + 1,
     };
     debugger;
     setNotes((prevNotes) => [...prevNotes, newNote]);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: string) => {
     setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
   };
 

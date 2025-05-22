@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 interface Note {
+  id: string;
   title: string;
   content: string;
 }
@@ -16,7 +17,7 @@ export default function NoteForm({ onSave }: NoteFormProps) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (!title || !content) return;
-    onSave({ title, content });
+    onSave({ id: crypto.randomUUID(), title, content });
     setTitle('');
     setContent('');
   };

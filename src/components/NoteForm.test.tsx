@@ -18,6 +18,10 @@ test('allows user to type in title and content fields and clears the form after 
   const user = userEvent.setup();
   const handleSave = vi.fn();
 
+  vi.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(
+    '123e4567-e89b-12d3-a456-426614174000'
+  );
+
   render(<NoteForm onSave={handleSave} />);
 
   const titleInput = screen.getByPlaceholderText(/title/i);
@@ -31,6 +35,7 @@ test('allows user to type in title and content fields and clears the form after 
 
   // Check if the title and content are set correctly
   expect(handleSave).toHaveBeenCalledWith({
+    id: '123e4567-e89b-12d3-a456-426614174000',
     title: 'Test Title',
     content: 'Test Content',
   });

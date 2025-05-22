@@ -1,12 +1,12 @@
 interface Note {
-  id: number;
+  id: string;
   title: string;
   content: string;
 }
 
 interface NotesListProps {
   notes: Note[];
-  onDelete: (id: number) => void;
+  onDelete: (id: string) => void;
 }
 
 export default function NotesList({ notes, onDelete }: NotesListProps) {

@@ -5,8 +5,8 @@ import userEvent from '@testing-library/user-event';
 
 test('renders a list of notes with title and content', () => {
   const notes = [
-    { id: 1, title: 'Note 1', content: 'Content 1' },
-    { id: 2, title: 'Note 2', content: 'Content 2' },
+    { id: '1', title: 'Note 1', content: 'Content 1' },
+    { id: '2', title: 'Note 2', content: 'Content 2' },
   ];
 
   render(<NotesList notes={notes} onDelete={() => {}} />);
@@ -26,8 +26,8 @@ test('renders empty state when no notes are provided', () => {
 test('deletes a note when delete button is clicked', async () => {
   const user = userEvent.setup();
   const notes = [
-    { id: 1, title: 'Note 1', content: 'Content 1' },
-    { id: 2, title: 'Note 2', content: 'Content 2' },
+    { id: '1', title: 'Note 1', content: 'Content 1' },
+    { id: '2', title: 'Note 2', content: 'Content 2' },
   ];
   const onDelete = vi.fn();
 
@@ -36,5 +36,5 @@ test('deletes a note when delete button is clicked', async () => {
   const deleteButton = screen.getByLabelText('Delete note 1');
 
   await user.click(deleteButton);
-  expect(onDelete).toHaveBeenCalledWith(1);
+  expect(onDelete).toHaveBeenCalledWith('1');
 });
