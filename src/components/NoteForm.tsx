@@ -72,7 +72,7 @@ export default function NoteForm({ onSave }: NoteFormProps) {
       />
       <button
         type="submit"
-        className="w-full rounded-md bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-700"
+        className="w-full cursor-pointer rounded-md bg-blue-600 py-2 font-semibold text-white transition hover:bg-blue-800"
       >
         Add Note
       </button>

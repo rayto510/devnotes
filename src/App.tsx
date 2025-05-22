@@ -43,7 +43,7 @@ function App() {
         <div className="my-4 flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedTag(null)}
-            className={`rounded px-3 py-1 ${selectedTag === null ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+            className={`cursor-pointer rounded px-3 py-1 ${selectedTag === null ? 'bg-blue-600 text-white hover:bg-blue-800' : 'bg-gray-200 hover:bg-gray-400'}`}
           >
             All
           </button>
@@ -51,7 +51,7 @@ function App() {
             <button
               key={tag}
               onClick={() => setSelectedTag(tag)}
-              className={`rounded px-3 py-1 ${selectedTag === tag ? 'bg-blue-600 text-white' : 'bg-gray-200'}`}
+              className={`cursor-pointer rounded px-3 py-1 ${selectedTag === tag ? 'bg-blue-600 text-white hover:bg-blue-800' : 'bg-gray-200 hover:bg-gray-400'}`}
             >
               #{tag}
             </button>

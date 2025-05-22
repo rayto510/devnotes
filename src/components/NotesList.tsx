@@ -25,7 +25,7 @@ export default function NotesList({ notes, onDelete }: NotesListProps) {
             <button
               aria-label={`Delete note ${note.id}`}
               onClick={() => onDelete(note.id)}
-              className="text-red-600 transition hover:text-red-800"
+              className="cursor-pointer text-red-600 transition hover:text-red-800"
             >
               &#x2715;
             </button>
