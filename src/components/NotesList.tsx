@@ -2,6 +2,7 @@ interface Note {
   id: string;
   title: string;
   content: string;
+  tags: string[];
 }
 
 interface NotesListProps {
@@ -22,6 +23,16 @@ export default function NotesList({ notes, onDelete }: NotesListProps) {
               {note.title}
             </h2>
             <p className="text-gray-600">{note.content}</p>
+          </div>
+          <div className="mt-1 flex flex-wrap gap-1">
+            {note.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded bg-blue-100 px-2 py-0.5 text-xs text-blue-800"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
           <button
             aria-label={`Delete note ${note.id}`}

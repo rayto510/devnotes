@@ -5,8 +5,8 @@ import userEvent from '@testing-library/user-event';
 
 test('renders a list of notes with title and content', () => {
   const notes = [
-    { id: '1', title: 'Note 1', content: 'Content 1' },
-    { id: '2', title: 'Note 2', content: 'Content 2' },
+    { id: '1', title: 'Note 1', content: 'Content 1', tags: ['foo', 'bar'] },
+    { id: '2', title: 'Note 2', content: 'Content 2', tags: [] },
   ];
 
   render(<NotesList notes={notes} onDelete={() => {}} />);
@@ -15,6 +15,8 @@ test('renders a list of notes with title and content', () => {
   expect(screen.getByText(/content 1/i)).toBeInTheDocument();
   expect(screen.getByText(/note 2/i)).toBeInTheDocument();
   expect(screen.getByText(/content 2/i)).toBeInTheDocument();
+  expect(screen.getByText(/foo/i)).toBeInTheDocument();
+  expect(screen.getByText(/bar/i)).toBeInTheDocument();
 });
 
 test('renders empty state when no notes are provided', () => {
@@ -26,8 +28,8 @@ test('renders empty state when no notes are provided', () => {
 test('deletes a note when delete button is clicked', async () => {
   const user = userEvent.setup();
   const notes = [
-    { id: '1', title: 'Note 1', content: 'Content 1' },
-    { id: '2', title: 'Note 2', content: 'Content 2' },
+    { id: '1', title: 'Note 1', content: 'Content 1', tags: [] },
+    { id: '2', title: 'Note 2', content: 'Content 2', tags: [] },
   ];
   const onDelete = vi.fn();
 

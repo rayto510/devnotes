@@ -4,6 +4,7 @@ interface Note {
   id: string;
   title: string;
   content: string;
+  tags: string[];
 }
 
 interface NoteFormProps {
@@ -13,11 +14,16 @@ interface NoteFormProps {
 export default function NoteForm({ onSave }: NoteFormProps) {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [tags, setTags] = useState('');
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const tagsArray = tags
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean);
     if (!title || !content) return;
-    onSave({ id: crypto.randomUUID(), title, content });
+    onSave({ id: crypto.randomUUID(), title, content, tags: tagsArray });
     setTitle('');
     setContent('');
   };
@@ -39,6 +45,11 @@ export default function NoteForm({ onSave }: NoteFormProps) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
         className="w-full resize-none rounded border border-gray-300 p-2"
+      />
+      <input
+        value={tags}
+        onChange={(e) => setTags(e.target.value)}
+        placeholder="Tags (comma separated)"
       />
       <button
         type="submit"

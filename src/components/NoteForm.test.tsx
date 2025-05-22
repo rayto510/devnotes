@@ -38,6 +38,7 @@ test('allows user to type in title and content fields and clears the form after 
     id: '123e4567-e89b-12d3-a456-426614174000',
     title: 'Test Title',
     content: 'Test Content',
+    tags: [],
   });
   expect(titleInput).not.toHaveTextContent('Test Title');
   expect(contentInput).not.toHaveTextContent('Test Content');
