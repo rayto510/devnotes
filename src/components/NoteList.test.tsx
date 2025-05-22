@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import NotesList from './NotesList';
-import { test, expect, vi } from 'vitest';
+import { test, expect } from 'vitest';
 
 test('renders a list of notes with title and content', () => {
     const notes = [
