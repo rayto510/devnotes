@@ -15,11 +15,15 @@ function App() {
   };
 
   return (
-    <main style={{ padding: '1rem' }}>
-      <h1>DevNotes 📝</h1>
-      <p>A developer note-taking app (MVP in progress)</p>
-      <NoteForm onSave={handleSave} />
-      <NotesList notes={notes} />
+    <main className="min-h-screen bg-gray-50 p-6" >
+      <div className="max-w-3xl mx-auto bg-white shadow-md rounded-xl p-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">DevNotes 📝</h1>
+        <p className="text-gray-600 mb-6">A developer note-taking app (MVP in progress)</p>
+        <NoteForm onSave={handleSave} />
+        <div className="mt-8">
+          <NotesList notes={notes} />
+        </div>
+      </div>
     </main>
   );
 }

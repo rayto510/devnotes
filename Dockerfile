@@ -1,14 +1,19 @@
 # Dockerfile
-FROM node:18
+FROM node:24
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Install pnpm
+RUN npm install -g pnpm
 
-# Install dependencies
-RUN npm install
+# Copy package.json and pnpm-lock.yaml first (for caching)
+COPY package.json pnpm-lock.yaml ./
+
+ENV NODE_ENV=development
+
+# Install deps with pnpm
+RUN pnpm install
 
 # Copy rest of the app
 COPY . .
@@ -17,4 +22,4 @@ COPY . .
 EXPOSE 5173
 
 # Start the dev server
-CMD ["npm", "run", "dev"]
+CMD ["pnpm", "run", "dev"]
