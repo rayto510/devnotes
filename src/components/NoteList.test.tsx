@@ -15,3 +15,9 @@ test('renders a list of notes with title and content', () => {
     expect(screen.getByText(/note 2/i)).toBeInTheDocument();
     expect(screen.getByText(/content 2/i)).toBeInTheDocument();
 });
+
+test('renders empty state when no notes are provided', () => {
+    render(<NotesList notes={[]} />);
+
+    expect(screen.getByText(/no notes available/i)).toBeInTheDocument();
+});
