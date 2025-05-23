@@ -36,7 +36,7 @@ export default function NotesList({ notes, onDelete }: NotesListProps) {
           <div className="flex flex-wrap gap-2">
             {note.tags.map((tag) => (
               <span
-                key={tag}
+                key={`${tag}-${note.id}`}
                 className="inline-block rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-800 dark:bg-blue-700 dark:text-blue-200"
               >
                 {tag}

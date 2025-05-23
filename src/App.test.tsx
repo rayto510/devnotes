@@ -62,6 +62,13 @@ test('deleting a note will not make it display', async () => {
 test('shows all notes when no tag is selected', async () => {
   const user = userEvent.setup();
   render(<App />);
+  vi.stubGlobal('crypto', {
+    randomUUID: vi
+      .fn()
+      .mockImplementationOnce(() => 'uuid-1') // 1st call
+      .mockImplementationOnce(() => 'my-special-uuid') // 2nd call
+      .mockImplementationOnce(() => 'uuid-3'), // 3rd call
+  });
 
   for (const note of sampleNotes) {
     await user.type(screen.getByPlaceholderText(/title/i), note.title);
@@ -85,6 +92,13 @@ test('shows all notes when no tag is selected', async () => {
 test('filters notes by selected tag', async () => {
   const user = userEvent.setup();
   render(<App />);
+  vi.stubGlobal('crypto', {
+    randomUUID: vi
+      .fn()
+      .mockImplementationOnce(() => 'uuid-1') // 1st call
+      .mockImplementationOnce(() => 'my-special-uuid') // 2nd call
+      .mockImplementationOnce(() => 'uuid-3'), // 3rd call
+  });
 
   for (const note of sampleNotes) {
     await user.type(screen.getByPlaceholderText(/title/i), note.title);
